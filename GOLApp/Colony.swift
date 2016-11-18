@@ -4,7 +4,7 @@ class Colony : CustomStringConvertible {
     var name: String
     var evolutionNumber: Int = 0
     var wrapping = false
-    let Size = 20
+    let Size = 60
     
     init(cName: String, wrapping: Bool) {
         ColonyCells = []
