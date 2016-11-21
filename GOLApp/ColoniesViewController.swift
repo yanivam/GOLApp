@@ -203,5 +203,5 @@ class ColoniesViewController: UIViewController, UITableViewDelegate, UITableView
         currentFates.removeAll()
     }
 }
-//
+////
 //To do: Movement set dead. Get good evolution range. Stop from going off colony. Way to clear colony?
