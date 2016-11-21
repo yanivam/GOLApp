@@ -44,9 +44,8 @@ class ColoniesViewController: UIViewController, UITableViewDelegate, UITableView
         let insets = UIEdgeInsets(top: statusBarHeight, left: 0, bottom: 0, right: 0)
         tableView.contentInset = insets
         tableView.scrollIndicatorInsets = insets
-        colonyView.layer.borderWidth = 4
+        colonyView.layer.borderWidth = 2
         colonyView.layer.borderColor = UIColor.black.cgColor
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -198,4 +197,4 @@ class ColoniesViewController: UIViewController, UITableViewDelegate, UITableView
     }
 }
 
-//To do: Movement set dead. Get good evolution range. Stop from going off colony. Show x: y: coordinates to user. What to do with x: y: for multiple touches? Way to clear colony? What to do for default (Default colony or CGRect hiding when nothing selected)? Hide Colony when deleted?
+//TODO: Movement set dead. Get good evolution range. Stop from going off colony. Show x: y: coordinates to user. What to do with x: y: for multiple touches? Way to clear colony? What to do for default (Default colony or CGRect hiding when nothing selected)? Hide Colony when deleted?
