@@ -12,9 +12,10 @@ class ColoniesViewController: UIViewController, UITableViewDelegate, UITableView
     
     var colonyStore: ColonyStore!
     var currentColony = Colony(cName: "Test", wrapping: true)
+    var currentFates = [NSValue:Bool]()
     var timer = Timer()
-    var currentFates = [NSValue: Bool]()
-    
+    let hidingFrame = CGRect(x: 368, y: 0, width: 998, height: 1024)
+    var hidingView : UIView? = nil
     
     @IBOutlet var tableView: UITableView!
     @IBOutlet var colonyView: UIView!
@@ -46,6 +47,9 @@ class ColoniesViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.scrollIndicatorInsets = insets
         colonyView.layer.borderWidth = 4
         colonyView.layer.borderColor = UIColor.black.cgColor
+        hidingView = UIView(frame: hidingFrame)
+        hidingView!.backgroundColor = UIColor.darkGray
+        view.addSubview(hidingView!)
         
     }
     
@@ -86,6 +90,7 @@ class ColoniesViewController: UIViewController, UITableViewDelegate, UITableView
             sender.setTitle("Save edits", for: .normal)
             
             //Turn on editing mode
+            hidingView!.isHidden = false
             setEditing(true, animated: true)
         }
     }
@@ -124,6 +129,7 @@ class ColoniesViewController: UIViewController, UITableViewDelegate, UITableView
         evolutionSpeedChanged(sender: evolutionSpeed)
         wrappingSwitch.isOn = currentColony.wrapping
         coordinates.text = "x:     y:     "
+        hidingView!.isHidden = true
         updateColonyView()
     }
     
@@ -198,4 +204,4 @@ class ColoniesViewController: UIViewController, UITableViewDelegate, UITableView
     }
 }
 
-//To do: Movement set dead. Get good evolution range. Stop from going off colony. Show x: y: coordinates to user. What to do with x: y: for multiple touches? Way to clear colony? What to do for default (Default colony or CGRect hiding when nothing selected)? Hide Colony when deleted?
+//To do: Movement set dead. Get good evolution range. Stop from going off colony. Way to clear colony?
