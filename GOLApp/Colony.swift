@@ -13,7 +13,7 @@ class Colony : CustomStringConvertible {
     }
     
     func setColonyCellAlive(xCoor: Int, yCoor: Int){
-        if(withinBounds(x: xCoor, y: yCoor)){
+        if(withinBoundsForSet(x: xCoor, y: yCoor)){
             ColonyCells.insert(ColonyCell(xCoor, yCoor))
         }
     }
@@ -45,6 +45,11 @@ class Colony : CustomStringConvertible {
     
     func isColonyCellAlive(xCoor: Int, yCoor: Int)->Bool{
         return ColonyCells.contains(ColonyCell(xCoor, yCoor))
+    }
+    
+    //Delete once better method.
+    private func withinBoundsForSet(x: Int, y: Int)->Bool{
+        return (x >= 0 && x < Size && y >= 0 && y < Size)
     }
     
     private func withinBounds(x: Int, y: Int)->Bool{
@@ -146,3 +151,4 @@ class Colony : CustomStringConvertible {
         evolutionNumber += 1
     }
 }
+////////

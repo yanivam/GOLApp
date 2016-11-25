@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 //
 //  TableColonyItem.swift
 //  GOLApp
@@ -64,4 +65,7 @@ class ColonyView: UIView{
         currentFates.removeAll()
     }
 }
+=======
+
+>>>>>>> hideView
 
