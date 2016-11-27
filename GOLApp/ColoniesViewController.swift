@@ -17,6 +17,7 @@ class ColoniesViewController: UIViewController, UITableViewDelegate, UITableView
     let hidingFrame = CGRect(x: 368, y: 0, width: 998, height: 1024)
     var hidingView : UIView? = nil
     
+    
     @IBOutlet var tableView: UITableView!
     @IBOutlet var colonyView: UIView!
     @IBOutlet var evolutionLabel: UILabel!
@@ -40,20 +41,11 @@ class ColoniesViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //Status Bar
-        let statusBarHeight = UIApplication.shared.statusBarFrame.height
-        let insets = UIEdgeInsets(top: statusBarHeight, left: 0, bottom: 0, right: 0)
-        tableView.contentInset = insets
-        tableView.scrollIndicatorInsets = insets
         colonyView.layer.borderWidth = 2
         colonyView.layer.borderColor = UIColor.black.cgColor
-<<<<<<< HEAD
-=======
         hidingView = UIView(frame: hidingFrame)
         hidingView!.backgroundColor = UIColor.darkGray
         view.addSubview(hidingView!)
-        
->>>>>>> hideView
     }
     
     override func didReceiveMemoryWarning() {
@@ -64,19 +56,6 @@ class ColoniesViewController: UIViewController, UITableViewDelegate, UITableView
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
         self.tableView.setEditing(editing, animated: animated)
-    }
-    
-    @IBAction func addNewItem(sender: AnyObject) {
-        //Create a new item and add it to the store
-        let newItem = colonyStore.createItem()
-        
-        
-        //Figure out where that item is in the array
-        let index = colonyStore.allColonyItems.index(of: newItem)
-        let indexPath = NSIndexPath(row: index!, section: 0)
-        //Insert this new row into the table
-        
-        tableView.insertRows(at: [indexPath as IndexPath], with: .automatic)
     }
     
     @IBAction func toggleEditingMode(sender: AnyObject) {
@@ -205,11 +184,41 @@ class ColoniesViewController: UIViewController, UITableViewDelegate, UITableView
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         currentFates.removeAll()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        evolutionSpeed.value = 0
+        //If the triggered segue is the "AddSegue" segue
+        if segue.identifier == "AddSegue" {
+        //Create a new item and add it to the store
+        let newItem = colonyStore.createItem()
+            
+        //Figure out where that item is in the array
+        let index = colonyStore.allColonyItems.index(of: newItem)
+        let indexPath = NSIndexPath(row: index!, section: 0)
+        //Insert this new row into the table
+            
+        tableView.insertRows(at: [indexPath as IndexPath], with: .automatic)
+        //Get the item associated with this row and pass it along
+        let item = newItem
+        let detailViewController = segue.destination as! DetailViewController
+        detailViewController.tableColonyItem = item
+            
+        }
+        
+        if segue.identifier == "ChangeSegue" {
+            if let row = tableView.indexPathForSelectedRow?.row {
+                //Get the item associated with this row and pass it along
+                let item = colonyStore.allColonyItems[row]
+                let detailViewController = segue.destination as! DetailViewController
+                detailViewController.tableColonyItem = item
+            }
+        }
+    }
 }
-<<<<<<< HEAD
 
 //TODO: Movement set dead. Get good evolution range. Stop from going off colony. Show x: y: coordinates to user. What to do with x: y: for multiple touches? Way to clear colony? What to do for default (Default colony or CGRect hiding when nothing selected)? Hide Colony when deleted?
-=======
-//////
-//To do: Movement set dead. Get good evolution range. Stop from going off colony. Way to clear colony?
->>>>>>> hideView
