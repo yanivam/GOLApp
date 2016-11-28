@@ -49,5 +49,5 @@ class DetailViewController: UIViewController {
         tableColonyItem.templateSetter()
         tableColonyItem.name = namingTextField.text ?? ""
     }
-    //
+    ////
 }
