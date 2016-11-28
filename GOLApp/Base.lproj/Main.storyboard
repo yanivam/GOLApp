@@ -30,9 +30,8 @@
                                     <rect key="frame" x="0.0" y="64" width="306" height="60"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nA6-Lm-Z9l">
-                                            <rect key="frame" x="157" y="15" width="141" height="30"/>
-                                            <state key="normal" title="Add Colony"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nA6-Lm-Z9l">
+                                            <rect key="frame" x="157" y="19" width="141" height="22"/>
                                             <connections>
                                                 <segue destination="HWU-dm-ZVa" kind="show" identifier="AddSegue" id="LWn-EJ-9iO"/>
                                             </connections>

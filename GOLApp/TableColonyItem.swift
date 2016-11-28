@@ -41,4 +41,5 @@ class TableColonyItem: NSObject {
             colony.setColonyCellAlive(xCoor: 11, yCoor: 12)
         }
     }
+    //
 }

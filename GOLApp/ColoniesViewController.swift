@@ -219,6 +219,7 @@ class ColoniesViewController: UIViewController, UITableViewDelegate, UITableView
             }
         }
     }
+    //
 }
 
 //TODO: Movement set dead. Get good evolution range. Stop from going off colony. Show x: y: coordinates to user. What to do with x: y: for multiple touches? Way to clear colony? What to do for default (Default colony or CGRect hiding when nothing selected)? Hide Colony when deleted?
