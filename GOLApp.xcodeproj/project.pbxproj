@@ -15,6 +15,7 @@
 		7938FA4B1DD3A01500D8C555 /* ColonyStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7938FA4A1DD3A01500D8C555 /* ColonyStore.swift */; };
 		7938FA4D1DD3A02500D8C555 /* Colony.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7938FA4C1DD3A02500D8C555 /* Colony.swift */; };
 		7938FA4F1DD3A02F00D8C555 /* ColonyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7938FA4E1DD3A02F00D8C555 /* ColonyCell.swift */; };
+		79B377FF1DEA47C8002C2B81 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B377FE1DEA47C8002C2B81 /* DetailViewController.swift */; };
 		79DB8FAC1DD6C3C2009239EE /* TableColonyItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DB8FAB1DD6C3C2009239EE /* TableColonyItem.swift */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +30,7 @@
 		7938FA4A1DD3A01500D8C555 /* ColonyStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColonyStore.swift; sourceTree = "<group>"; };
 		7938FA4C1DD3A02500D8C555 /* Colony.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colony.swift; sourceTree = "<group>"; };
 		7938FA4E1DD3A02F00D8C555 /* ColonyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColonyCell.swift; sourceTree = "<group>"; };
+		79B377FE1DEA47C8002C2B81 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		79DB8FAB1DD6C3C2009239EE /* TableColonyItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableColonyItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -69,6 +71,7 @@
 				7938FA4A1DD3A01500D8C555 /* ColonyStore.swift */,
 				7938FA4C1DD3A02500D8C555 /* Colony.swift */,
 				7938FA4E1DD3A02F00D8C555 /* ColonyCell.swift */,
+				79B377FE1DEA47C8002C2B81 /* DetailViewController.swift */,
 				7938FA3F1DD39F7D00D8C555 /* Assets.xcassets */,
 				7938FA411DD39F7D00D8C555 /* LaunchScreen.storyboard */,
 				7938FA441DD39F7D00D8C555 /* Info.plist */,
@@ -154,6 +157,7 @@
 				7938FA4F1DD3A02F00D8C555 /* ColonyCell.swift in Sources */,
 				7938FA4B1DD3A01500D8C555 /* ColonyStore.swift in Sources */,
 				7938FA4D1DD3A02500D8C555 /* Colony.swift in Sources */,
+				79B377FF1DEA47C8002C2B81 /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

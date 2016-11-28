@@ -20,8 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let itemStore = ColonyStore()
         
         //Access the ItemViewController and set its item store
-        let itemController = window!.rootViewController as! ColoniesViewController
-        itemController.colonyStore = itemStore
+        let navController = window!.rootViewController as! UINavigationController
+        let colonyController = navController.topViewController as! ColoniesViewController
+        colonyController.colonyStore = itemStore
         return true
     }
 
@@ -47,6 +48,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-
+////
 }
 

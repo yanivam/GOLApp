@@ -11,23 +11,35 @@ import UIKit
 class TableColonyItem: NSObject {
     var name: String
     var colony : Colony
-    var serialNumber: String?
-    init(name: String, serialNumber: String?) {
+    var template: String
+    
+    init(name: String) {
         self.name = name
         colony = Colony(cName: name, wrapping: false)
-        self.serialNumber = serialNumber
+        template = "Blank"
         super.init()
     }
     
-    convenience init(random: Bool = false) {
-        if random {
-            let randomInt = arc4random_uniform(UInt32(UInt32.max))
-            let chosenName = "Colony \(randomInt)"
-            let randomSerialNumber = NSUUID().uuidString.components(separatedBy: "-").first!
-            self.init(name: chosenName, serialNumber: randomSerialNumber)
+    func templateSetter() {
+        if(template == "Blank") {
+            print("Empty template")
         }
-        else {
-            self.init(name: "", serialNumber: nil)
+        
+        if(template == "Basic") {
+            print("Basic template")
+            colony.setColonyCellAlive(xCoor: 4, yCoor: 4)
+            colony.setColonyCellAlive(xCoor: 4, yCoor: 3)
+            colony.setColonyCellAlive(xCoor: 4, yCoor: 5)
+            colony.setColonyCellAlive(xCoor: 5, yCoor: 4)
+        }
+        
+        if(template == "Glider") {
+            print("Glider template")
+            colony.setColonyCellAlive(xCoor: 10, yCoor: 12)
+            colony.setColonyCellAlive(xCoor: 10, yCoor: 13)
+            colony.setColonyCellAlive(xCoor: 10, yCoor: 11)
+            colony.setColonyCellAlive(xCoor: 11, yCoor: 12)
         }
     }
+    ////
 }
