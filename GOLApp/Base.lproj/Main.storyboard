@@ -81,7 +81,7 @@
                                     <outlet property="delegate" destination="Jz6-xI-A9k" id="ZiN-eI-6aV"/>
                                 </connections>
                             </tableView>
-                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Cqc-xw-odB">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Cqc-xw-odB">
                                 <rect key="frame" x="348" y="72" width="1024" height="944"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A7D-0k-f0G">
@@ -164,10 +164,10 @@
                         <constraints>
                             <constraint firstItem="nFi-kI-jaO" firstAttribute="top" secondItem="Cqc-xw-odB" secondAttribute="bottom" constant="8" id="0GR-JX-mJm"/>
                             <constraint firstItem="Ate-7Y-aDo" firstAttribute="leading" secondItem="T97-Kh-Tnh" secondAttribute="leading" id="19l-ys-eFH"/>
-                            <constraint firstItem="Cqc-xw-odB" firstAttribute="leading" secondItem="Ate-7Y-aDo" secondAttribute="trailing" constant="8" id="FQM-cL-6FM"/>
+                            <constraint firstItem="Cqc-xw-odB" firstAttribute="leading" secondItem="Ate-7Y-aDo" secondAttribute="trailing" constant="42" id="FQM-cL-6FM"/>
                             <constraint firstItem="Ate-7Y-aDo" firstAttribute="top" secondItem="T97-Kh-Tnh" secondAttribute="top" id="LjE-Nj-lSc"/>
                             <constraint firstItem="Cqc-xw-odB" firstAttribute="top" secondItem="Ucx-6A-A7z" secondAttribute="bottom" constant="8" id="Owz-iK-qXg"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Cqc-xw-odB" secondAttribute="trailing" constant="8" id="Xex-V5-a8H"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Cqc-xw-odB" secondAttribute="trailing" constant="-26" id="Xex-V5-a8H"/>
                             <constraint firstItem="nFi-kI-jaO" firstAttribute="top" secondItem="Ate-7Y-aDo" secondAttribute="bottom" id="knK-5R-xM9"/>
                         </constraints>
                     </view>
