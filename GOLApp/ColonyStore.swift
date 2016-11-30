@@ -30,11 +30,12 @@ class ColonyStore {
     }
 
     func createItem() -> TableColonyItem {
-        let newTableColonyItem = TableColonyItem(random: true)
-    
+        let newTableColonyItem = TableColonyItem(name: "")
+        
         allColonyItems.append(newTableColonyItem)
     
         return newTableColonyItem
     
     }
+    ////
 }

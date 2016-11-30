@@ -12,13 +12,18 @@ class ColoniesViewController: UIViewController, UITableViewDelegate, UITableView
     
     var colonyStore: ColonyStore!
     var currentColony = Colony(cName: "Test", wrapping: true)
-    var currentFates = [NSValue:Bool]()
+    //var currentFates = [NSValue:Bool]()
     var timer = Timer()
-    let hidingFrame = CGRect(x: 368, y: 0, width: 998, height: 1024)
+    let hidingFrame = CGRect(x: 315, y: 0, width: 1050, height: 1024)
     var hidingView : UIView? = nil
     
+    /*var cellLength : CGFloat = 0
+    var xBorder : CGFloat = 0
+    var yBorder : CGFloat = 0*/
+    
+    
     @IBOutlet var tableView: UITableView!
-    @IBOutlet var colonyView: UIView!
+    @IBOutlet var colonyView: ColonyView!
     @IBOutlet var evolutionLabel: UILabel!
     @IBOutlet var evolutionSpeed: UISlider!
     @IBOutlet var wrappingSwitch: UISwitch!
@@ -40,18 +45,24 @@ class ColoniesViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //Status Bar
-        let statusBarHeight = UIApplication.shared.statusBarFrame.height
-        let insets = UIEdgeInsets(top: statusBarHeight, left: 0, bottom: 0, right: 0)
-        tableView.contentInset = insets
-        tableView.scrollIndicatorInsets = insets
-        colonyView.layer.borderWidth = 4
-        colonyView.layer.borderColor = UIColor.black.cgColor
+        colonyView.updateCellDimensions()
+        //colonyView.layer.borderWidth = 2
+        //colonyView.layer.borderColor = UIColor.black.cgColor
         hidingView = UIView(frame: hidingFrame)
         hidingView!.backgroundColor = UIColor.darkGray
         view.addSubview(hidingView!)
-        
     }
+    
+    /*func updateCellDimensions(){
+        if(colonyView.frame.height > colonyView.frame.width){
+            cellLength = colonyView.frame.width / 60
+            yBorder = (colonyView.frame.height - colonyView.frame.width) / 2
+        }
+        else{
+            cellLength = colonyView.frame.height / 60
+            xBorder = (colonyView.frame.width - colonyView.frame.height) / 2
+        }
+    }*/
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -61,19 +72,6 @@ class ColoniesViewController: UIViewController, UITableViewDelegate, UITableView
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
         self.tableView.setEditing(editing, animated: animated)
-    }
-    
-    @IBAction func addNewItem(sender: AnyObject) {
-        //Create a new item and add it to the store
-        let newItem = colonyStore.createItem()
-        
-        
-        //Figure out where that item is in the array
-        let index = colonyStore.allColonyItems.index(of: newItem)
-        let indexPath = NSIndexPath(row: index!, section: 0)
-        //Insert this new row into the table
-        
-        tableView.insertRows(at: [indexPath as IndexPath], with: .automatic)
     }
     
     @IBAction func toggleEditingMode(sender: AnyObject) {
@@ -125,26 +123,29 @@ class ColoniesViewController: UIViewController, UITableViewDelegate, UITableView
     //When colony from table is selected
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         currentColony = colonyStore.allColonyItems[indexPath.row].colony
+        colonyView.updateColony(newColony: currentColony, newCoordinates: coordinates)
         evolutionSpeed.value = 0.0
         evolutionSpeedChanged(sender: evolutionSpeed)
         wrappingSwitch.isOn = currentColony.wrapping
         coordinates.text = "x:     y:     "
         hidingView!.isHidden = true
-        updateColonyView()
+        colonyView.updateColonyView()
     }
     
     func evolve(){
         currentColony.evolve()
-        updateColonyView()
+        evolutionLabel.text = ("Evolution #" + String(currentColony.evolutionNumber))
+        colonyView.updateColonyView()
     }
     
-    func updateColonyView(){
+    /*func updateColonyView(){
         evolutionLabel.text = ("Evolution #" + String(currentColony.evolutionNumber))
         for view in colonyView.subviews{
             view.removeFromSuperview()
         }
+        updateCellDimensions()
         for singleCell in currentColony.ColonyCells{
-            let singleFrame = CGRect(x: (singleCell.xCoor * 10), y: (singleCell.yCoor * 10), width: 10, height: 10)
+            let singleFrame = CGRect(x: Int(xBorder) + (singleCell.xCoor * Int(cellLength)), y: Int(yBorder) + (singleCell.yCoor * Int(cellLength)), width: Int(cellLength), height: Int(cellLength))
             let singleView = UIView(frame: singleFrame)
             singleView.backgroundColor = UIColor.black
             colonyView.addSubview(singleView)
@@ -155,8 +156,8 @@ class ColoniesViewController: UIViewController, UITableViewDelegate, UITableView
         for touch in touches {
             let key = NSValue(nonretainedObject: touch)
             let location = touch.location(in: colonyView)
-            let colonyX = Int(location.x / 10)
-            let colonyY = Int(location.y / 10)
+            let colonyX = Int(location.x / cellLength)
+            let colonyY = Int(location.y / cellLength)
             coordinates.text = "x: \(colonyX) y: \(59-colonyY)"
             var fate = false
             if currentColony.isColonyCellAlive(xCoor: colonyX, yCoor: colonyY){
@@ -177,8 +178,8 @@ class ColoniesViewController: UIViewController, UITableViewDelegate, UITableView
         for touch in touches {
             let key = NSValue(nonretainedObject: touch)
             let location = touch.location(in: colonyView)
-            let colonyX = Int(location.x / 10)
-            let colonyY = Int(location.y / 10)
+            let colonyX = Int((location.x-xBorder) / cellLength)
+            let colonyY = Int((location.y-yBorder) / cellLength)
             coordinates.text = "x: \(colonyX) y: \(59-colonyY)"
             if currentColony.isColonyCellAlive(xCoor: colonyX, yCoor: colonyY){
                 if !currentFates[key]!{
@@ -201,7 +202,44 @@ class ColoniesViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         currentFates.removeAll()
+    }*/
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+        hidingView!.isHidden = false
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        evolutionSpeed.value = 0
+        //If the triggered segue is the "AddSegue" segue
+        if segue.identifier == "AddSegue" {
+        //Create a new item and add it to the store
+        let newItem = colonyStore.createItem()
+            
+        //Figure out where that item is in the array
+        let index = colonyStore.allColonyItems.index(of: newItem)
+        let indexPath = NSIndexPath(row: index!, section: 0)
+        //Insert this new row into the table
+            
+        tableView.insertRows(at: [indexPath as IndexPath], with: .automatic)
+        //Get the item associated with this row and pass it along
+        let item = newItem
+        let detailViewController = segue.destination as! DetailViewController
+        detailViewController.tableColonyItem = item
+            
+        }
+        
+        if segue.identifier == "ChangeSegue" {
+            if let row = tableView.indexPathForSelectedRow?.row {
+                //Get the item associated with this row and pass it along
+                let item = colonyStore.allColonyItems[row]
+                let detailViewController = segue.destination as! DetailViewController
+                detailViewController.tableColonyItem = item
+            }
+        }
+    }
+    ////
 }
-//////
-//To do: Movement set dead. Get good evolution range. Stop from going off colony. Way to clear colony?
+
+//TODO: Movement set dead. Get good evolution range. Stop from going off colony. Show x: y: coordinates to user. What to do with x: y: for multiple touches? Way to clear colony? What to do for default (Default colony or CGRect hiding when nothing selected)? Hide Colony when deleted?
