@@ -46,6 +46,7 @@ class DetailViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
+        
         tableColonyItem.templateSetter()
         tableColonyItem.name = namingTextField.text ?? ""
     }
