@@ -45,7 +45,7 @@ class ColoniesViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        colonyView.updateCellDimensions()
+        //colonyView.updateCellDimensions()
         //colonyView.layer.borderWidth = 2
         //colonyView.layer.borderColor = UIColor.black.cgColor
         hidingView = UIView(frame: hidingFrame)
@@ -129,13 +129,13 @@ class ColoniesViewController: UIViewController, UITableViewDelegate, UITableView
         wrappingSwitch.isOn = currentColony.wrapping
         coordinates.text = "x:     y:     "
         hidingView!.isHidden = true
-        colonyView.updateColonyView()
+        colonyView.setNeedsDisplay()
     }
     
     func evolve(){
         currentColony.evolve()
         evolutionLabel.text = ("Evolution #" + String(currentColony.evolutionNumber))
-        colonyView.updateColonyView()
+        colonyView.setNeedsDisplay()
     }
     
     /*func updateColonyView(){
@@ -239,7 +239,4 @@ class ColoniesViewController: UIViewController, UITableViewDelegate, UITableView
             }
         }
     }
-    ////
 }
-
-//TODO: Movement set dead. Get good evolution range. Stop from going off colony. Show x: y: coordinates to user. What to do with x: y: for multiple touches? Way to clear colony? What to do for default (Default colony or CGRect hiding when nothing selected)? Hide Colony when deleted?
